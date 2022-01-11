@@ -24,9 +24,6 @@
                   <th>Mobile</th> 
                   <th>Email Id</th>
                   <th>Role</th> 
-                 {{--  <th>R - W - D</th>  --}}                 
-                  <th>Status</th>                  
-                               
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -35,37 +32,20 @@
                   $arrayId=1;
                      
                   @endphp
-                @foreach($accounts as $account)
-                {{-- @if ($account->id==1)
-                  @continue
-                @endif --}}
+                @foreach($accounts as $account) 
                 <tr>
-                  <td>{{ $arrayId ++ }}</td>
-                  <input type="hidden" name="user_id[]" value="{{ $account->id }}"> 
+                  <td>{{ $arrayId ++ }}</td> 
                   <td>{{ $account->first_name }} {{ $account->last_name}}</td>
                   <td>{{ $account->mobile }}</td> 
                   <td>{{ $account->email }}</td>
-                  <td>{{ $account->name or '' }}</td>
-                  {{-- <td>
-                   
-                  <a href="{{ route('admin.account.r_status',$account->id) }}" data-parent="tr" class="label {{ ($account->r_status == 1) ?'btn-success':'btn-danger'}} btn btn-xs">{{ ($account->r_status == 1)? 'A' : 'D' }}</a>
-                  <a href="{{ route('admin.account.w_status',$account->id) }}" data-parent="tr" class="label {{ ($account->w_status == 1) ?'btn-success':'btn-danger'}} btn btn-xs">{{ ($account->w_status == 1)? 'A' : 'D' }}</a>
-                  <a href="{{ route('admin.account.d_status',$account->id) }}" data-parent="tr" class="label {{ ($account->d_status == 1) ?'btn-success':'btn-danger'}} btn btn-xs">{{ ($account->d_status == 1)? 'A' : 'D' }}</a>
-                   
-                  </td> --}}
-                  <td>
-                    {{-- <a href="{{ route('admin.account.status',$account->id) }}" data-parent="tr" class="label {{ ($account->status == 1) ?'btn-success':'btn-danger'}} btn btn-xs">{{ ($account->status == 1)? 'Active' : 'Inactive' }}</a> --}}
-                  </td>  
-                                
+                  <td>{{ $account->name or '' }}</td> 
                   <td> 
-                     
-                  
-                  <a href="#" onclick="callPopupLarge(this,'{{ route('admin.account.edit',[$account->id]) }}')" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
+                  <a href="#" onclick="callPopupLarge(this,'{{ route('admin.account.edit',Crypt::encrypt($account->id)) }}')" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
                   
                 
                   
 
-                  <a  href="{{ route('admin.account.delete',Crypt::encrypt($account->id)) }}" onclick="return confirm('Are you sure to delete this data ?')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                  
                    
                   
                   </td>

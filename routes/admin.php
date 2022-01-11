@@ -17,22 +17,24 @@ Route::group(['middleware' => 'admin'], function() {
 	    Route::get('form', 'AccountController@form')->name('admin.account.form');
 	    Route::post('store', 'AccountController@store')->name('admin.account.post');
 		Route::get('list', 'AccountController@index')->name('admin.account.list');
-		
-		
 		Route::get('edit/{account}', 'AccountController@edit')->name('admin.account.edit');
 		Route::post('update/{account}', 'AccountController@update')->name('admin.account.edit.post');
 		Route::get('delete/{account}', 'AccountController@destroy')->name('admin.account.delete');
-					
-		
 
-		
+		Route::get('DistrictsAssign', 'AccountController@DistrictsAssign')->name('admin.account.DistrictsAssign'); 
+		Route::get('StateDistrictsSelect', 'AccountController@StateDistrictsSelect')->name('admin.account.StateDistrictsSelect'); 
+		Route::post('DistrictsAssignStore', 'AccountController@DistrictsAssignStore')->name('admin.Master.DistrictsAssignStore');
+		Route::get('DistrictsAssignDelete/{id}', 'AccountController@DistrictsAssignDelete')->name('admin.Master.DistrictsAssignDelete');
 
+		Route::get('BlockAssign', 'AccountController@BlockAssign')->name('admin.account.BlockAssign'); 
+		Route::get('DistrictBlockAssign', 'AccountController@DistrictBlockAssign')->name('admin.account.DistrictBlockAssign'); 
+		Route::post('DistrictBlockAssignStore', 'AccountController@DistrictBlockAssignStore')->name('admin.Master.DistrictBlockAssignStore');
+		Route::get('DistrictBlockAssignDelete/{id}', 'AccountController@DistrictBlockAssignDelete')->name('admin.Master.DistrictBlockAssignDelete');
 
-
-
-		
-		
-						
+		Route::get('gramPanchayatAssign', 'AccountController@gramPanchayatAssign')->name('admin.account.gramPanchayatAssign'); 
+		Route::get('DistrictBlockgramPanchayatAssign', 'AccountController@DistrictBlockgramPanchayatAssign')->name('admin.account.DistrictBlockgramPanchayatAssign'); 
+		Route::post('DistrictBlockgramPanchayatAssignStore', 'AccountController@DistrictBlockgramPanchayatAssignStore')->name('admin.Master.DistrictBlockgramPanchayatAssignStore');
+		Route::get('DistrictBlockgramPanchayatAssignDelete/{id}', 'AccountController@DistrictBlockgramPanchayatAssignDelete')->name('admin.Master.DistrictBlockgramPanchayatAssignDelete'); 
 		
 	});
 	
@@ -123,6 +125,15 @@ Route::group(['middleware' => 'admin'], function() {
 		 Route::get('vomeeting', 'SHGDetailController@vomeeting')->name('admin.vomeeting'); 
 		 Route::post('vomeetingStore', 'SHGDetailController@vomeetingStore')->name('admin.vomeeting.store'); 
 		 Route::get('vomeetinglist', 'SHGDetailController@vomeetingList')->name('admin.vomeeting.list'); 
+		 
+		  
+	});
+	Route::group(['prefix' => 'report'], function() {
+		 Route::get('vo-report', 'ReportController@voReport')->name('admin.report'); 
+		 Route::post('vo-report-generate', 'ReportController@voReportGenerate')->name('admin.report.generate'); 
+		 Route::get('self-help-gorup-report', 'ReportController@selfHelpGroupreport')->name('admin.report.self.HelpGroupreport'); 
+		 Route::post('self-help-gorup-report-generate', 'ReportController@selfHelpGroupreportGenerate')->name('admin.report.self.HelpGroupreport.generate'); 
+		 
 		 
 		  
 	});
