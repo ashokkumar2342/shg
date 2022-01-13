@@ -18,6 +18,65 @@
               <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" maxlength="100">
           </div>
           <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">Father/Husband Name</label>
+              <span class="fa fa-asterisk"></span>
+              <input type="text" name="father_husband_name" class="form-control" placeholder="Enter Father/Husband Name" maxlength="100">
+          </div>
+          <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">Gender</label>
+              <select name="gender" id="gender" class="form-control">
+                <option selected disabled>Select Gender Type</option>
+                @foreach ($gender_type as $gender_typ)       
+                  <option value="{{$gender_typ->id}}">{{$gender_typ->gender_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">Relation</label>
+              <select name="relation" id="relation" class="form-control">
+                <option selected disabled>Select Relation Type</option>
+                @foreach ($relation_type as $relation_type)       
+                  <option value="{{$relation_type->id}}">{{$relation_type->relation_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">Religion</label>
+              <select name="religion" id="religion" class="form-control">
+                <option selected disabled>Select Religion Type</option>
+                @foreach ($religion_type as $religion_typ)       
+                  <option value="{{$religion_typ->id}}">{{$religion_typ->type_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">Disability</label>
+              <select name="disability" id="disability" class="form-control">
+                <option selected disabled>Select Disability Type</option>
+                @foreach ($disability_type as $disability_type)       
+                  <option value="{{$disability_type->id}}">{{$disability_type->type_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">PIP Category</label>
+              <select name="pip_category" id="religion" class="form-control">
+                <option selected disabled>Select PIP Category</option>
+                @foreach ($pip_category as $pip_category)       
+                  <option value="{{$pip_category->id}}">{{$pip_category->type_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-lg-4 form-group">
+              <label for="exampleInputEmail1">Education Level</label>
+              <select name="education_level" id="education_level" class="form-control">
+                <option selected disabled>Select Education Level</option>
+                @foreach ($education_level as $education_level)       
+                  <option value="{{$education_level->id}}">{{$education_level->edu_level_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col-lg-4 form-group">
               <label for="exampleInputEmail1">Insurance Type</label>
               <span class="fa fa-asterisk"></span>
               <select name="insurance_type" id="insurance_type" class="form-control">
@@ -60,7 +119,7 @@
           <div class="col-lg-4 form-group" style="margin-top:30px"> 
             <div class="form-group clearfix">
               <div class="icheck-primary d-inline">
-                <input type="checkbox" id="checkboxPrimary1" name="aadhar_seeded">
+                <input type="checkbox" id="checkboxPrimary1" name="aadhar_seeded" value="1">
                 <label for="checkboxPrimary1">Aadhar Seeded</label> 
               </div> 
             </div>

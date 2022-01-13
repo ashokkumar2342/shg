@@ -59,40 +59,127 @@
                                              
                                         </select>
                                     </div>
-                                    <div class="col-lg-3 form-group">
+                                    <div class="col-lg-4 form-group">
                                         <label for="exampleInputEmail1">Group Name</label> 
                                         <span class="fa fa-asterisk"></span>
                                         <input type="text" name="group_name" id="group_name" class="form-control" placeholder="Enter Group Name" maxlength="100">
                                     </div>
-                                    <div class="col-lg-3 form-group">
+                                    <div class="col-lg-4 form-group">
                                         <label for="exampleInputEmail1">NRLM SHG Code</label>
                                         
                                         <input type="text" name="shg_code" id="shg_code" class="form-control" placeholder="Enter NRLM SHG Code" maxlength="10">
                                     </div>
-                                    <div class="col-lg-3 form-group">
+                                    <div class="col-lg-4 form-group">
                                         <label for="exampleInputEmail1">Formation Date</label>
                                         <span class="fa fa-asterisk"></span>
                                         <input type="date" name="formation_date" id="formation_date" class="form-control">
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                    <label for="exampleInputEmail1">SHG Type</label>
+                                        <select name="shg_type"  class="form-control">
+                                                <option selected disabled>Select SHG Type</option>
+                                                @foreach ($Shgtypes as $Shgtype)
+                                                <option value="{{ $Shgtype->id }}">{{ $Shgtype->shgtype_code }}--{{ $Shgtype->shgtype_name }}</option>  
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        <label for="exampleInputEmail1">Date of Cooption</label>
+                                        <span class="fa fa-asterisk"></span>
+                                        <input type="date" name="formation_date" id="formation_date" class="form-control">
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                    <label for="exampleInputEmail1">Prometed By</label>
+                                        <select name="prometed_by"  class="form-control">
+                                                <option selected disabled>Select Prometed By</option>
+                                                @foreach ($shg_prometed_types as $shg_prometed_type)
+                                                <option value="{{ $shg_prometed_type->id }}">{{ $shg_prometed_type->type_code }}--{{ $shg_prometed_type->type_name }}</option>  
+                                                @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-lg-3 form-group">
                                         <label for="exampleInputEmail1">Bank Name</label>
                                         <span class="fa fa-asterisk"></span>
                                         <input type="text" name="bank_name" id="bank_name" class="form-control" placeholder="Enter Bank Name" maxlength="100">
                                     </div>
-                                    <div class="col-lg-4 form-group">
+                                    <div class="col-lg-3 form-group">
                                         <label for="exampleInputEmail1">Branch Name</label>
                                         <span class="fa fa-asterisk"></span>
                                         <input type="text" name="branch_name" id="branch_name" class="form-control" placeholder="Enter Branch Name" maxlength="100">
                                     </div>
-                                    <div class="col-lg-4 form-group">
+                                    <div class="col-lg-3 form-group">
                                         <label for="exampleInputEmail1">Account No.</label>
                                         <span class="fa fa-asterisk"></span>
                                         <input type="text" name="account_no" id="account_no" class="form-control" placeholder="Enter Account No." maxlength="30">
                                     </div>
-                                    <div class="col-lg-4 form-group">
+                                    <div class="col-lg-3 form-group">
+                                        <label for="exampleInputEmail1">Account Opening Date</label>
+                                        <span class="fa fa-asterisk"></span>
+                                        <input type="date" name="account_opening_date" id="account_opening_date" class="form-control">
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                    <label for="exampleInputEmail1">Shg Meeting Frequency</label>
+                                        <select name="shg_meeting_frequency"  class="form-control">
+                                                <option selected disabled>Select Meeting Frequency</option>
+                                                @foreach ($shg_meeting_frequencys as $shg_prometed_type)
+                                                <option value="{{ $shg_prometed_type->id }}">{{ $shg_prometed_type->type_code }}--{{ $shg_prometed_type->type_name }}</option>  
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                    <label for="exampleInputEmail1">Saving Amount</label>
+                                        <select name="saving_amount"  class="form-control">
+                                                <option selected disabled>Select saving_amts</option>
+                                                @foreach ($saving_amts as $shg_prometed_type)
+                                                <option value="{{ $shg_prometed_type->id }}">{{ $shg_prometed_type->amt }}</option>  
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 form-group text-center">
+                                        <label for="exampleInputEmail1">Basic Traning Received</label>
+                                        <div class="form-group clearfix">
+                                          <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary1" name="basic_training" value="1">
+                                            <label for="radioPrimary1">Yes</label> 
+                                          </div> &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary3" name="basic_training" value="0">
+                                            <label for="radioPrimary3">NO</label> 
+                                          </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-3 form-group">
                                         <label for="exampleInputEmail1">Loan Account No.</label>
                                         <span class="fa fa-asterisk"></span>
                                         <input type="text" name="loan_account_no" id="loan_account_no" class="form-control" placeholder="Enter Loan Account No." maxlength="30">
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <label for="exampleInputEmail1">Subsidy Amount</label>
+                                        <span class="fa fa-asterisk"></span>
+                                        <input type="text" name="subsidy_amt" id="subsidy_amt" class="form-control" placeholder="Enter Loan Account No." maxlength="30">
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                    <label for="exampleInputEmail1">Amount of Capital</label>
+                                        <select name="amount_of_capital"  class="form-control">
+                                                <option selected disabled>Select saving_amts</option>
+                                                @foreach ($saving_amts as $shg_prometed_type)
+                                                <option value="{{ $shg_prometed_type->id }}">{{ $shg_prometed_type->amt }}</option>  
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                    <label for="exampleInputEmail1">Trained Bookkeeper No.</label>
+                                        <select name="trained_bookkeeper_no"  class="form-control">
+                                                <option selected disabled>Select saving_amts</option>
+                                                @foreach ($trained_bookkeeper_opt as $shg_prometed_type)
+                                                <option value="{{ $shg_prometed_type->id }}">{{ $shg_prometed_type->opt_name }}</option>  
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <label for="exampleInputEmail1">Name of Bookkeeper Name</label>
+                                        <span class="fa fa-asterisk"></span>
+                                        <input type="text" name="name_of_bookkeeper" id="name_of_bookkeeper" class="form-control" placeholder="Enter Name of Bookkeeper Name" maxlength="100">
                                     </div> 
                                 </div> 
                                 <div class="card-footer text-center">

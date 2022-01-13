@@ -28,31 +28,6 @@
 			</tbody>
 		</table>			 
 	</htmlpageheader> 
- <table style="width: 750px">
-		<thead>
-			<tr>
-				<th>Village Name</th>
-                <th>SHG Name</th>
-                <th>NRLM SHG Code</th>
-                <th>Date of Joining</th>
-                <th>SHG Member To VO</th>
-                <th>Designation</th>
-                <th>Mobile No.</th> 
-			</tr>
-		</thead>
-		<tbody> 
-	    @foreach ($voProfileLists as $voProfileList) 
-	    	<tr> 
-		        <td>{{ $voProfileList->vil_name }}</td>
-				<td>{{ $voProfileList->shg_name }}</td>
-				<td>{{ $voProfileList->shg_code }}</td> 
-				<td>{{ $voProfileList->joining_date }}</td> 
-				<td>{{ $voProfileList->member_1 }} <br> {{ $voProfileList->member_2 }}</td> 
-				<td>{{ $voProfileList->designation_1 }} <br> {{ $voProfileList->designation_2 }}</td> 
-				<td>{{ $voProfileList->mobile_1 }} <br> {{ $voProfileList->mobile_2 }}</td>  
-	        </tr> 
-	    @endforeach 
-		</tbody>
-	</table>
+ 
 </body>
 </html>

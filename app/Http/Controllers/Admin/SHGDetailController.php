@@ -25,8 +25,14 @@ class SHGDetailController extends Controller
     {
          try {
             
-          $States= State::orderBy('name','ASC')->get(); 
-          return view('admin.shgdetails.self_help_group',compact('States'));
+          $States= State::orderBy('name','ASC')->get();
+          $Shgtypes=DB::select(DB::raw("select * from `shg_type`;")); 
+          $shg_prometed_types=DB::select(DB::raw("select * from `shg_prometed_type`;")); 
+          $shg_meeting_frequencys=DB::select(DB::raw("select * from `shg_meeting_frequency`;")); 
+          $saving_amts=DB::select(DB::raw("select * from `saving_amt`;")); 
+          $trained_bookkeeper_opt=DB::select(DB::raw("select * from `trained_bookkeeper_opt`;")); 
+           
+          return view('admin.shgdetails.self_help_group',compact('States','Shgtypes','shg_prometed_types','shg_meeting_frequencys','saving_amts','trained_bookkeeper_opt'));
         } catch (Exception $e) {
             
         }
@@ -42,14 +48,10 @@ class SHGDetailController extends Controller
             'gram_panchayat' => 'required',  
             'village' => 'required',  
             'group_name' => 'required', 
-            'formation_date' => 'required', 
-            'bank_name' => 'required', 
-            'branch_name' => 'required', 
-            'account_no' => 'required', 
-            'loan_account_no' => 'required', 
+           
            
         ];
-
+        
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
           $errors = $validator->errors()->all();
@@ -60,7 +62,7 @@ class SHGDetailController extends Controller
         }
         $formation_date=date('Y-m-d',strtotime($request->formation_date));
         
-        $selfHelpGroup=DB::select(DB::raw("insert into `selfhelpgroups` (`state_id` , `district_id` , `block_id` , `panchayat_id` , `village_id` , `group_name`, `shg_code` , `formation_date` , `bank_name` , `branch_name` , `account_no` , `loan_account_no` ) values ($request->states , $request->district , $request->block_mc ,$request->gram_panchayat , $request->village , '$request->group_name' , '$request->shg_code' , '$formation_date' , '$request->bank_name' , '$request->branch_name' , '$request->account_no' , '$request->loan_account_no');"));
+        $selfHelpGroup=DB::select(DB::raw("insert into `selfhelpgroups` (`state_id` , `district_id` , `block_id` , `panchayat_id` , `village_id` , `group_name`, `shg_type_id` , `revival_date`, `promoted_by` , `account_opening_date` ,`shg_code` , `formation_date` , `bank_name` , `branch_name` , `account_no` , `loan_account_no` , `meeting_frequency` , `saving_amt` , `basic_training`, `subsidy_amt`, `trained_bookkeeper`, `book_keeper_name`) values ($request->states , $request->district , $request->block_mc ,$request->gram_panchayat , $request->village , '$request->group_name' , '$request->shg_type' ,'2020-12-12', '$request->prometed_by' , '$request->account_opening_date' ,'$request->shg_code' , '$formation_date' , '$request->bank_name' , '$request->branch_name' , '$request->account_no' , '$request->loan_account_no', '$request->shg_meeting_frequency', '$request->saving_amount', '$request->basic_training', '$request->subsidy_amt', '$request->trained_bookkeeper_no' ,'$request->name_of_bookkeeper');"));
         $response=['status'=>1,'msg'=>'Submit Successfully'];
         return response()->json($response); 
         } catch (Exception $e) {
@@ -74,9 +76,15 @@ class SHGDetailController extends Controller
     }
     public function selfHelpGroupAdd($id)
     {
-       $selfHelpGroupId=Crypt::decrypt($id);
-       $InsuranceTypes=DB::select(DB::raw(" select * from `insurance_type`;"));
-       return view('admin.shgdetails.add_member',compact('selfHelpGroupId','InsuranceTypes'));   
+        $selfHelpGroupId=Crypt::decrypt($id);
+        $InsuranceTypes=DB::select(DB::raw(" select * from `insurance_type`;"));
+        $gender_type=DB::select(DB::raw("select * from `gender_type`;")); 
+        $relation_type=DB::select(DB::raw("select * from `relation_type`;"));
+        $religion_type=DB::select(DB::raw("select * from `religion_type`;"));
+        $disability_type=DB::select(DB::raw("select * from `disability_type`;"));
+        $pip_category=DB::select(DB::raw("select * from `pip_category`;"));
+        $education_level=DB::select(DB::raw("select * from `education_level`;"));
+       return view('admin.shgdetails.add_member',compact('selfHelpGroupId','InsuranceTypes','gender_type','relation_type','religion_type','disability_type','pip_category','education_level'));   
     }
     public function selfHelpGroupAddLeb2($id)
     {
@@ -97,7 +105,7 @@ class SHGDetailController extends Controller
             'branch_name' => 'required', 
             'account_no' => 'required', 
             ];
-
+            
             $validator = Validator::make($request->all(),$rules);
             if ($validator->fails()) {
               $errors = $validator->errors()->all();
@@ -107,7 +115,7 @@ class SHGDetailController extends Controller
               return response()->json($response);// response as json
             }
             $selfHelpGroupid=Crypt::decrypt($id); 
-            $selfHelpGroup=DB::select(DB::raw("insert into `shg_member_detail` (`shg_id` ,`member_name`, `insurance_type` , `aadhar_no` , `ppp_id` , `mobile_no` , `bank_name` , `branch_name` , `account_no` , `aadhar_seeded` ) values ($selfHelpGroupid , '$request->member_name' ,$request->insurance_type , $request->aadhar_no , '$request->ppp_id' ,$request->mobile_no ,'$request->bank_name' , '$request->branch_name' , '$request->account_no' ,1);"));
+            $selfHelpGroup=DB::select(DB::raw("insert into `shg_member_detail` (`shg_id` ,`member_name`, `relation_name` , `gender` , `relation_id` , `religion_id` , `disability_id` , `pip_category` , `education` , `insurance_type` , `aadhar_no` , `ppp_id` , `mobile_no` , `bank_name` , `branch_name` , `account_no` , `aadhar_seeded` ) values ($selfHelpGroupid , '$request->member_name' , '$request->father_husband_name' , '$request->gender' , '$request->relation' , '$request->religion' , '$request->disability' , '$request->pip_category' , '$request->education_level' , '$request->insurance_type' , '$request->aadhar_no' , '$request->ppp_id' ,' $request->mobile_no' ,'$request->bank_name' , '$request->branch_name' , '$request->account_no' ,1);"));
             $response=['status'=>1,'msg'=>'Submit Successfully'];
             return response()->json($response); 
         } catch (Exception $e) {
