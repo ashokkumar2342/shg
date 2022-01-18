@@ -69,10 +69,45 @@ class SHGDetailController extends Controller
             
         }
     }
+    public function selfHelpGroupUpadte(Request $request , $id)
+    {
+        try {
+            $rules=[ 
+            'group_name' => 'required', 
+        ];
+        
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+          $errors = $validator->errors()->all();
+          $response=array();
+          $response["status"]=0;
+          $response["msg"]=$errors[0];
+          return response()->json($response);// response as json
+        }
+        $formation_date=date('Y-m-d',strtotime($request->formation_date));
+        $selfHelpGroupId=Crypt::decrypt($id);
+        $selfHelpGroup=DB::select(DB::raw("update `selfhelpgroups` set `group_name` = '$request->group_name' , `shg_type_id` = '$request->shg_type' , `revival_date` = '2020-12-12' , `promoted_by` = '$request->prometed_by' , `account_opening_date` = '$request->account_opening_date' , `shg_code`= '$request->shg_code' , `formation_date` = '$formation_date' , `bank_name` = '$request->bank_name' , `branch_name` = '$request->branch_name' , `account_no` = '$request->account_no' , `loan_account_no` = '$request->loan_account_no' , `meeting_frequency` = '$request->shg_meeting_frequency', `saving_amt` = '$request->saving_amount' , `subsidy_amt` = '$request->subsidy_amt' , `trained_bookkeeper` = '$request->trained_bookkeeper_no' , `book_keeper_name` = '$request->name_of_bookkeeper' where `id` = $selfHelpGroupId;")); 
+        $response=['status'=>1,'msg'=>'Submit Successfully'];
+        return response()->json($response); 
+        } catch (Exception $e) {
+            
+        }
+    }
     public function selfHelpGroupList(Request $request)
     {
        $selfHelpGroupList=DB::select(DB::raw(" select * from `selfhelpgroups` where `village_id`='$request->id'"));
        return view('admin.shgdetails.self_help_group_list',compact('selfHelpGroupList'));   
+    }
+    public function selfHelpGroupEdit($id)
+    {   
+        $selfHelpGroupId=Crypt::decrypt($id);
+        $selfHelpGroupList=DB::select(DB::raw("select * from `selfhelpgroups` where `id`='$selfHelpGroupId'"));
+        $Shgtypes=DB::select(DB::raw("select * from `shg_type`;")); 
+        $shg_prometed_types=DB::select(DB::raw("select * from `shg_prometed_type`;")); 
+        $shg_meeting_frequencys=DB::select(DB::raw("select * from `shg_meeting_frequency`;")); 
+        $saving_amts=DB::select(DB::raw("select * from `saving_amt`;")); 
+        $trained_bookkeeper_opt=DB::select(DB::raw("select * from `trained_bookkeeper_opt`;")); 
+        return view('admin.shgdetails.self_help_group_edit',compact('selfHelpGroupId','selfHelpGroupList','Shgtypes','shg_prometed_types','shg_meeting_frequencys','saving_amts','trained_bookkeeper_opt'));   
     }
     public function selfHelpGroupAdd($id)
     {
@@ -88,9 +123,15 @@ class SHGDetailController extends Controller
     }
     public function selfHelpGroupAddLeb2($id)
     {
-       $selfHelpGroupId=Crypt::decrypt($id);
-       $InsuranceTypes=DB::select(DB::raw(" select * from `insurance_type`;"));
-       return view('admin.shgdetails.add_member_label2',compact('selfHelpGroupId','InsuranceTypes'));   
+        $selfHelpGroupId=Crypt::decrypt($id);
+        $InsuranceTypes=DB::select(DB::raw(" select * from `insurance_type`;"));
+        $gender_type=DB::select(DB::raw("select * from `gender_type`;")); 
+        $relation_type=DB::select(DB::raw("select * from `relation_type`;"));
+        $religion_type=DB::select(DB::raw("select * from `religion_type`;"));
+        $disability_type=DB::select(DB::raw("select * from `disability_type`;"));
+        $pip_category=DB::select(DB::raw("select * from `pip_category`;"));
+        $education_level=DB::select(DB::raw("select * from `education_level`;"));
+       return view('admin.shgdetails.add_member_label2',compact('selfHelpGroupId','InsuranceTypes','gender_type','relation_type','religion_type','disability_type','pip_category','education_level'));    
     }
     public function selfHelpGroupStoreMember(Request $request ,$id)
     {
@@ -132,10 +173,16 @@ class SHGDetailController extends Controller
 
      public function selfHelpGroupEditMember($id,$selfHelpGroupid)
     {
-       $shg_member_detail_id=Crypt::decrypt($id);
-       $InsuranceTypes=DB::select(DB::raw(" select * from `insurance_type`;"));
-       $rs_updates=DB::select(DB::raw(" select * from `shg_member_detail` where `id`='$shg_member_detail_id';"));
-       return view('admin.shgdetails.edit_member',compact('rs_updates','InsuranceTypes','shg_member_detail_id','selfHelpGroupid'));   
+        $shg_member_detail_id=Crypt::decrypt($id);
+        $InsuranceTypes=DB::select(DB::raw(" select * from `insurance_type`;"));
+        $rs_updates=DB::select(DB::raw(" select * from `shg_member_detail` where `id`='$shg_member_detail_id';"));
+        $gender_type=DB::select(DB::raw("select * from `gender_type`;")); 
+        $relation_type=DB::select(DB::raw("select * from `relation_type`;"));
+        $religion_type=DB::select(DB::raw("select * from `religion_type`;"));
+        $disability_type=DB::select(DB::raw("select * from `disability_type`;"));
+        $pip_category=DB::select(DB::raw("select * from `pip_category`;"));
+        $education_level=DB::select(DB::raw("select * from `education_level`;"));
+       return view('admin.shgdetails.edit_member',compact('rs_updates','InsuranceTypes','shg_member_detail_id','selfHelpGroupid','gender_type','relation_type','religion_type','disability_type','pip_category','education_level'));   
     }
 
     public function selfHelpGroupUpdateMember(Request $request ,$id)

@@ -97,7 +97,9 @@ class ReportController extends Controller
         $fontDirs = $defaultConfig['fontDir']; 
         $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
         $fontData = $defaultFontConfig['fontdata']; 
-         $mpdf = new \Mpdf\Mpdf([
+         $mpdf = new \Mpdf\Mpdf([ 'mode' => 'utf-8',
+    'format' => 'A4-L',
+    'orientation' => 'L',
         'fontDir' => array_merge($fontDirs, [
         __DIR__ . $path,
         ]),
@@ -126,11 +128,11 @@ class ReportController extends Controller
         left join `designation_ec` `des_2` on `des_2`.`id` = `vsd`.`designation_memeber_2`
         where `vsd`.`vo_id` = 1
         order by `vil`.`name`, `shg`.`group_name` ;"));
-        $html = view('admin.report.vo_pdf',compact('voProfileLists')); 
+        $html = view('admin.report.self_help_group_pdf',compact('voProfileLists')); 
         $mpdf->WriteHTML($html); 
         $mpdf->Output();
             
-          return view('admin.report.self_help_group_pdf',compact('States'));
+         
         } catch (Exception $e) {
             
         }

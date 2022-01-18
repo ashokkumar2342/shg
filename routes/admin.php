@@ -98,7 +98,8 @@ Route::group(['middleware' => 'admin'], function() {
 		 Route::get('self-help-group', 'SHGDetailController@selfHelpGroup')->name('admin.shg.detail.selfhelpgroup'); 
 		 Route::post('self-help-group-store', 'SHGDetailController@selfHelpGroupStore')->name('admin.shg.detail.selfhelpgroup.store'); 
 		 Route::get('self-help-group-list', 'SHGDetailController@selfHelpGroupList')->name('admin.shg.detail.selfhelpgroup.list'); 
-		 Route::get('self-help-group-edit', 'SHGDetailController@selfHelpGroupEdit')->name('admin.shg.detail.selfhelpgroup.edit'); 
+		 Route::get('self-help-group-edit/{id}', 'SHGDetailController@selfHelpGroupEdit')->name('admin.shg.detail.selfhelpgroup.edit'); 
+		 Route::post('self-help-group-update/{id}', 'SHGDetailController@selfHelpGroupUpadte')->name('admin.shg.detail.selfhelpgroup.update'); 
 		 Route::get('self-help-group-add/{id}', 'SHGDetailController@selfHelpGroupAdd')->name('admin.shg.detail.selfhelpgroup.add'); 
 		 Route::get('self-help-group-add-leb2/{id}', 'SHGDetailController@selfHelpGroupAddLeb2')->name('admin.shg.detail.selfhelpgroup.addleb2'); 
 		 Route::post('self-help-group-store-member/{id}', 'SHGDetailController@selfHelpGroupStoreMember')->name('admin.shg.detail.selfhelpgroup.store.member'); 

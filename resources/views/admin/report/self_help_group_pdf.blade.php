@@ -23,22 +23,63 @@
 		<table>
 			<tbody>
 				<tr>
-					<td style="width: 750px;background-color: #767d78;color: #fff;text-align: center;"><b>Member List</b></td>
+					<td style="width: 1010px;background-color: #767d78;color: #fff;text-align: center;"><b>SHG Member List</b></td>
 				</tr>
 			</tbody>
 		</table>			 
 	</htmlpageheader> 
- <table style="width: 750px">
+ 	<table style="border-collapse: collapse; width: 100%;" border="1">
+ 	<tbody>
+ 	<tr>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	</tr>
+ 	<tr>
+ 	<td colspan="3">ddddd</td>
+ 	<td colspan="2">ddddd</td>
+ 	</tr>
+ 	<tr>
+ 	<td colspan="2">ddddd</td>
+ 	<td  colspan="2">ddddd</td>
+ 	<td>ddddd</td>
+ 	</tr>
+ 	<tr>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td colspan="2">ddddd</td>
+ 	</tr>
+ 	<tr>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td>ddddd</td>
+ 	<td colspan="2">ddddd</td>
+ 	</tr>
+ 	<tr>
+ 	<td colspan="2">ddddd</td>
+ 	<td>ddddd</td>
+ 	<td colspan="2">ddddd</td>
+ 	</tr>
+ 	</tbody>
+ 	</table>
+ 	<table style="width: 100%">
 		<thead>
 			<tr>
 				
                 <th>Member Name</th>
-                <th>Insurance</th>
-                <th>Aadhar No.</th>
-                <th>Mobile No.</th> 
-                <th>Bank</th>
-                <th>Branch</th>
-                <th>Account No.</th>
+                <th>Father/Husband</th>
+                <th>Social Category</th>
+                <th>DOB</th>
+                
+				<th>Sub Category <br>Disability / Religion / Gender</th> 
+                <th>PIP Category</th>
+                <th>Leader</th> 
+                <th>Joining Date</th>
+                <th>Education </th>
+                
 			</tr>
 		</thead>
 		<tbody> 
@@ -55,5 +96,6 @@
 	    @endforeach 
 		</tbody>
 	</table>
+ 	
 </body>
 </html>

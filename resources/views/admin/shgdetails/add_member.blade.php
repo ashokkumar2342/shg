@@ -88,33 +88,33 @@
           </div>
           <div class="col-lg-4 form-group">
               <label for="exampleInputPassword1">Aadhar No.</label>
-              <span class="fa fa-asterisk"></span>
+              
               <input type="text" name="aadhar_no" class="form-control" placeholder="Enter Aadhar No" maxlength="12" minlength="12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
           </div>
           <div class="col-lg-4 form-group">
               <label for="exampleInputPassword1">PPP ID</label>
-              <span class="fa fa-asterisk"></span>
+              
               <input type="text" name="ppp_id" class="form-control" placeholder="Enter PPP ID" maxlength="10">
           </div>
           <div class="col-lg-4 form-group">
               <label for="exampleInputPassword1">Mobile No.</label>
-              <span class="fa fa-asterisk"></span>
+              
               <input type="text" name="mobile_no" class="form-control" placeholder="Enter Mobile No." maxlength="10" minlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
           </div>
           <div class="col-lg-4 form-group">
               <label for="exampleInputPassword1">Bank Name</label>
-              <span class="fa fa-asterisk"></span>
+              
               <input type="text" name="bank_name" class="form-control" placeholder="Enter Bank Name" maxlength="100">
           </div>
           <div class="col-lg-4 form-group">
               <label for="exampleInputPassword1">Branch Name</label>
-              <span class="fa fa-asterisk"></span>
+              
               <input type="text" name="branch_name" class="form-control" placeholder="Enter Branch Name" maxlength="100">
           </div>
           <div class="col-lg-4 form-group">
               <label for="exampleInputPassword1">Account No.</label>
-              <span class="fa fa-asterisk"></span>
-              <input type="text" name="account_no" class="form-control" placeholder="Enter Account No." maxlength="30" minlength="9">
+              
+              <input type="text" name="account_no" class="form-control" placeholder="Enter Account No." maxlength="30" minlength="9" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
           </div>
           <div class="col-lg-4 form-group" style="margin-top:30px"> 
             <div class="form-group clearfix">

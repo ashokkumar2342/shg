@@ -38,9 +38,9 @@
                     
                      <a onclick="callPopupLarge(this,'{{ route('admin.shg.detail.selfhelpgroup.add',Crypt::encrypt($selfHelpGroupList->id)) }}')" title="Edit" class="btn btn-info btn-xs" style="color:#fff"><i class="fa fa-plus"></i> Add Member</a>
 
-                     <a id="view_update_button{{ $selfHelpGroupList->id }}" onclick="callPopupLarge(this,'{{ route('admin.shg.detail.selfhelpgroup.view.member',Crypt::encrypt($selfHelpGroupList->id)) }}')" title="Edit" class="btn btn-info btn-xs" style="color:#fff"><i class="fa fa-pencil"></i> View & Update Member</a>
+                     <a id="view_update_button{{ $selfHelpGroupList->id }}" onclick="callPopupLarge(this,'{{ route('admin.shg.detail.selfhelpgroup.view.member',Crypt::encrypt($selfHelpGroupList->id)) }}')" title="Edit" class="btn btn-info btn-xs" style="color:#fff"><i class="fa fa-pencil"></i>      View & Update Member</a>
 
-                    {{--  <a onclick="callPopupLarge(this,'{{ route('admin.shg.detail.selfhelpgroup.edit.member',Crypt::encrypt($selfHelpGroupList->id)) }}')" title="Edit" class="btn btn-info btn-xs" style="color:#fff"><i class="fa fa-edit"></i> Edit</a> --}}
+                     <a onclick="callPopupLarge(this,'{{ route('admin.shg.detail.selfhelpgroup.edit',Crypt::encrypt($selfHelpGroupList->id)) }}')" title="Edit" class="btn btn-info btn-xs" style="color:#fff"><i class="fa fa-edit"></i> Edit</a>
 
                      
                  </td>
