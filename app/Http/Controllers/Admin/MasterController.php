@@ -341,9 +341,9 @@ class MasterController extends Controller
     public function stateWiseDistrict(Request $request)
     {
        try{ 
-          $admin=Auth::guard('admin')->user(); 
-          $Districts=DB::select(DB::raw(" select * from `districts` where `state_id`='$request->id'"));   
-          // $Districts=DB::select(DB::raw("call up_fetch_district_access ($admin->id, '$request->id')"));   
+            $admin=Auth::guard('admin')->user(); 
+          // $Districts=DB::select(DB::raw(" select * from `districts` where `state_id`='$request->id'"));   
+            $Districts=DB::select(DB::raw("call up_fetch_district_access ($admin->id, '$request->id')"));   
           return view('admin.master.districts.value_select_box',compact('Districts'));
         } catch (Exception $e) {
             
@@ -353,8 +353,8 @@ class MasterController extends Controller
     public function DistrictWiseBlock(Request $request,$print_condition=null)
     {
        try{
-            $BlocksMcs=DB::select(DB::raw(" select * from `blocks_mcs` where `districts_id`='$request->id'")); 
-          
+            $admin=Auth::guard('admin')->user(); 
+            $BlocksMcs=DB::select(DB::raw("call up_fetch_block_access ($admin->id, '$request->id')")); 
             return view('admin.master.block.value_select_box',compact('BlocksMcs'));
         } catch (Exception $e) {
             
@@ -366,7 +366,8 @@ class MasterController extends Controller
     {
        try{  
           $admin=Auth::guard('admin')->user(); 
-          $GramPanchayat=DB::select(DB::raw(" select * from `gram_panchayat` where `block_id`='$request->id'"));  
+          $GramPanchayat=DB::select(DB::raw("call up_fetch_gp_access ($admin->id, '$request->district_id','$request->id')"));
+         
           return view('admin.master.grampanchayat.gp_select_box',compact('GramPanchayat'));
         } catch (Exception $e) {
             

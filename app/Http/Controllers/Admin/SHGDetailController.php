@@ -208,7 +208,7 @@ class SHGDetailController extends Controller
               return response()->json($response);// response as json
             }
             $shg_member_detail_id=Crypt::decrypt($id); 
-            $shg_member_detail_update=DB::select(DB::raw("update `shg_member_detail` set `member_name` = '$request->member_name' , `insurance_type` =$request->insurance_type , `aadhar_no` ='$request->aadhar_no' , `ppp_id` ='$request->ppp_id' , `mobile_no` =$request->mobile_no , `bank_name` ='$request->bank_name' , `branch_name` ='$request->branch_name' , `account_no` ='$request->account_no' where `id` =$shg_member_detail_id;"));
+            $shg_member_detail_update=DB::select(DB::raw("update `shg_member_detail` set `member_name` = '$request->member_name', `relation_name` = '$request->father_husband_name' , `gender` = '$request->gender' , `relation_id` = '$request->relation' , `religion_id` = '$request->religion' , `disability_id` = '$request->disability' , `pip_category` = '$request->pip_category' , `education` = '$request->education_level' , `insurance_type` =$request->insurance_type , `aadhar_no` ='$request->aadhar_no' , `ppp_id` ='$request->ppp_id' , `mobile_no` =$request->mobile_no , `bank_name` ='$request->bank_name' , `branch_name` ='$request->branch_name' , `account_no` ='$request->account_no' where `id` =$shg_member_detail_id;"));
             $response=['status'=>1,'msg'=>'Update Successfully'];
             return response()->json($response); 
         } catch (Exception $e) {
@@ -427,6 +427,11 @@ class SHGDetailController extends Controller
         $voProfileLists=DB::select(DB::raw(" select * from `vo_meeting_detail` where `vo_id` = $request->id;"));
         return view('admin.vomeeting.meeting_list',compact('voProfileLists'));  
     }
+    public function vomeetingedit($id)
+    {   
+        $voProfileLists=DB::select(DB::raw(" select * from `vo_meeting_detail` where `id` = $id;"));
+        return view('admin.vomeeting.edit',compact('voProfileLists'));  
+    }
 
     public function vomeetingStore(Request $request)
     {
@@ -449,6 +454,35 @@ class SHGDetailController extends Controller
         } catch (Exception $e) {
             
         }
+    }
+     public function vomeetingUdate(Request $request,$id)
+    {
+        try {
+            $rules=[  
+           
+            
+            ]; 
+            $validator = Validator::make($request->all(),$rules);
+            if ($validator->fails()) {
+              $errors = $validator->errors()->all();
+              $response=array();
+              $response["status"]=0;
+              $response["msg"]=$errors[0];
+              return response()->json($response);// response as json
+            } 
+            $vo_meeting_detail=DB::select(DB::raw("update `vo_meeting_detail` set `for_month` = '$request->for_month' , `for_year` = '$request->for_year' , `meeting_date_1` = '$request->meeting_date_1' , `meeting_date_2` ='$request->meeting_date_2' where `id`=$id;"));
+            $response=['status'=>1,'msg'=>'Update Successfully'];
+            return response()->json($response); 
+        } catch (Exception $e) {
+            
+        }
+    }
+    public function vomeetingdelete($id)
+    {   
+        $id=Crypt::decrypt($id);
+        $vo_meeting_detail=DB::select(DB::raw("delete from `vo_meeting_detail` where `id` =$id"));
+        $response=['status'=>1,'msg'=>'Delete Successfully'];
+        return response()->json($response);  
     }
 
 }

@@ -2,12 +2,12 @@
   <div class="modal-content">
     <div class="modal-header">
       <h4 class="modal-title">Add Member</h4>
-      <button type="button" id="btn_close" class="close" data-dismiss="modal" aria-label="Close">
+      <button type="button" id="btn_close_" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form action="{{ route('admin.shg.detail.selfhelpgroup.store.member',Crypt::encrypt($selfHelpGroupId)) }}" method="post" class="add_form" button-click="btn_close,view_update_button{{$selfHelpGroupId}}">
+      <form action="{{ route('admin.shg.detail.selfhelpgroup.store.member',Crypt::encrypt($selfHelpGroupId)) }}" method="post" class="add_form" button-click="btn_close_,view_update_button{{$selfHelpGroupId}}">
       {{ csrf_field() }}
       
       <div class="card-body"> 

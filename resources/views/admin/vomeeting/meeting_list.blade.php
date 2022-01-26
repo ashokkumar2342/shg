@@ -20,8 +20,8 @@
      <td>{{ $voProfileList->meeting_date_2 }}</td>
      <td class="text-nowrap">
          
-     <a onclick="callPopupLarge(this,'{{ route('admin.Master.districtsEdit',$voProfileList->id) }}')" title="" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>
-     <a href="{{ route('admin.Master.districtsDelete',Crypt::encrypt($voProfileList->id)) }}" onclick="return confirm('Are you sure you want to delete this item?');"  title="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+     <a onclick="callPopupLarge(this,'{{ route('admin.vomeeting.edit',$voProfileList->id) }}')" title="" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>
+     <a  onclick="callAjax(this,'{{ route('admin.vomeeting.delete',Crypt::encrypt($voProfileList->id)) }}')" select-triger="vo_name"  success-popup="true" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
      </td>
  </tr> 
 @endforeach

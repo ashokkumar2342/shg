@@ -126,6 +126,9 @@ Route::group(['middleware' => 'admin'], function() {
 		 Route::get('vomeeting', 'SHGDetailController@vomeeting')->name('admin.vomeeting'); 
 		 Route::post('vomeetingStore', 'SHGDetailController@vomeetingStore')->name('admin.vomeeting.store'); 
 		 Route::get('vomeetinglist', 'SHGDetailController@vomeetingList')->name('admin.vomeeting.list'); 
+		 Route::get('vomeetingEdit{id}', 'SHGDetailController@vomeetingedit')->name('admin.vomeeting.edit'); 
+		 Route::get('vomeetingdelete{id}', 'SHGDetailController@vomeetingdelete')->name('admin.vomeeting.delete'); 
+		 Route::post('vomeetingUpdate{id}', 'SHGDetailController@vomeetingUdate')->name('admin.vomeeting.update'); 
 		 
 		  
 	});
